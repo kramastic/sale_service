@@ -1,0 +1,25 @@
+{% extends 'layout/base.html' %}
+
+{% block navigation %}
+<nav>
+    <a href="{% url 'login' %}">Войти</a>
+    <p><a href="{% url 'main' %}">Главная страница</a></p>
+    {% for cat in categories %}
+        <a href="{% url 'by_category' cat%}">{{ cat }}</a>
+    {% endfor %}
+
+</nav>
+{% endblock %}
+
+{% block content %}
+<h2>Для регистрации заполните форму ниже:</h2>
+<form method='post'>
+    {% csrf_token %}
+    {% for f in form %}
+    <p><label class="form-label" for="{{ f.id_for_label }}"> {{f.label}}: </label> {{ f }}</p>
+    <div class="form-error">{{ f.errors }}</div>
+    {% endfor %}
+    <button type='submit'>Зарегистрироваться</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<p>
+    {{ object.title }}
+</p>
+<p>
+    {{ object.address }}
+</p>
+<p>
+    {{ object.description }}
+</p>
+<p>
+    {{ object.price }} руб.
+</p>
+<p>
+    {% if  object.image_id%}
+    <img src='{{ object.image_id.url }}'>
+    {% else %}
+    Изображение отсутствует
+    {% endif %}
+</p>
+{% endblock %}

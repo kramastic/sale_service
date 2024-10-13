@@ -1,0 +1,13 @@
+{% extends 'layout/base.html' %}
+
+{%block content %}
+{% for obj in objects %}
+<div>
+    <p>
+        <a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a> 
+        <a href="{% url 'edit_adv' obj.id %}">Редактировать объявление</a>
+        <a href="{% url 'del_adv' obj.id %}">Удалить объявление</a>
+    </p>
+</div>
+{% endfor %}
+{% endblock %}

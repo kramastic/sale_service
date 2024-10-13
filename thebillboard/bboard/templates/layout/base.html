@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %} {{ title }} {% endblock %}</title>
+</head>
+<body>
+{% block navigation %}
+<nav>
+{% block main_nav %}
+    {% if request.user.is_authenticated %}
+    <p>
+    Привет, {{request.user.username}}! 
+    <a href="{% url 'my_adv' request.user.id%}">Мои объявления</a>
+    <a href="{% url 'add_adv' %}">Разместить объявление</a>
+    <a href="{% url 'logout' %}">Выйти</a>
+    </p> 
+    {% else %}
+    <p>
+    <a href="{% url 'register' %}">Зарегистрироваться</a> 
+    <a href="{% url 'login' %}">Войти</a>
+    </p>
+    {% endif %}
+    <p><a href="{% url 'main' %}">Главная страница</a></p>
+{% endblock main_nav%}
+
+{% block categories %}
+<p>Категории:
+{% for cat in categories %}
+    <a href="{% url 'by_category' cat%}">{{ cat }}</a>
+{% endfor %}
+</p>
+{% endblock categories %}
+</nav>
+{% endblock navigation%}
+
+<section>
+    {% block content %}
+    {% endblock %}
+</section>
+    
+</body>
+</html>

@@ -1,0 +1,13 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<div>
+<form role="form" action="{% url 'add_adv' %}" enctype="multipart/form-data" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type='submit' value='Разместить объявление'>
+</form>
+</div>
+{% endblock %}
+</body>
+</html>

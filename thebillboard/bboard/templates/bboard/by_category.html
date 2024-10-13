@@ -1,0 +1,20 @@
+{% extends 'layout/base.html' %}
+
+{% block categories %}
+    <p>Категории:
+{% for cat in categories %}
+    {% if cat == title %}
+        <a>{{ cat }}</a>
+    {% else %}
+        <a href="{% url 'by_category' cat%}">{{ cat }}</a>
+    {% endif %}
+{% endfor %}
+{% endblock categories %}
+
+{% block content %}
+    {% for obj in objects %}
+    <div>
+        <p><a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a></p>
+    </div>
+    {% endfor %}
+{% endblock %}
